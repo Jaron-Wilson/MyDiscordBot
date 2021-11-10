@@ -38,8 +38,10 @@ public class HelpAndInfo extends ListenerAdapter {
                     "\n - StartGGame (number guessing game 0 - 10)" +
                     "\n - dm @Name 'message'" + " (Sends a message to the person in the @name and then you put your message in the 'message')" +
                     "\n - Info (info, info!, Info, Info!) (shows info on this bot)" +
+                    "\n - clone Clones the channel you are on." +
                     "\n AboutLach (About Lachlan)" +
-                    "\n AboutJA (About JA_RON)";
+                    "\n AboutJA (About JA_RON)" +
+                    "\n got some code from: https://github.com/nkomarn/JDA-Tutorial/releases/tag/5.0";
 
 
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
@@ -54,6 +56,7 @@ public class HelpAndInfo extends ListenerAdapter {
             embedBuilder.setFooter(Whomade);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
+            event.getMessage().addReaction("☮").queue();
 
         }else if (messageSent.equalsIgnoreCase(Main.prefix + HELP2)){
             EmbedBuilder embedBuilder = new EmbedBuilder();

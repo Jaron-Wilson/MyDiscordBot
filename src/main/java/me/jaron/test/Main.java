@@ -1,17 +1,25 @@
 package me.jaron.test;
 
+import me.jaron.test.commands.Clear;
 import me.jaron.test.commands.Clearcommand;
 import me.jaron.test.embeds.HelpAndInfo;
 import me.jaron.test.embeds.TestEmbeds;
+import me.jaron.test.events.GuildMemberJoin;
+import me.jaron.test.events.GuildMemberLeave;
+import me.jaron.test.events.GuildMessageReceived;
 import me.jaron.test.games.GuessingGame;
 import me.jaron.test.games.pong.Pong;
 import me.jaron.test.listeners.Announcement;
 import me.jaron.test.messages.Messages;
 import me.jaron.test.messages.PrivateMessage;
 import me.jaron.test.messages.dmed.DMMessaged;
+import me.jaron.test.messages.reactions.GuildMessageReactionAdded;
+import net.dv8tion.jda.api.AccountType;
+import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.Compression;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
@@ -44,10 +52,10 @@ public class Main {
 
         builder.build();
 
-
     }
 
     public static void registerListeners(){
+
         builder.addEventListeners(new Pong());
         builder.addEventListeners(new Announcement());
         builder.addEventListeners(new GuessingGame());
@@ -57,6 +65,13 @@ public class Main {
         builder.addEventListeners(new HelpAndInfo());
         builder.addEventListeners(new TestEmbeds());
         builder.addEventListeners(new DMMessaged());
+        builder.addEventListeners(new GuildMessageReactionAdded());
+
+        //not mine copied
+        builder.addEventListeners(new Clear());
+        builder.addEventListeners(new GuildMemberJoin());
+        builder.addEventListeners(new GuildMemberLeave());
+//        builder.addEventListeners(new GuildMessageReceived());
 
 
     }

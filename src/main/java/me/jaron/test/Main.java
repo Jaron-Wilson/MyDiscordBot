@@ -25,8 +25,9 @@ public class Main {
     public static String prefix;
 
     public static void main(String[] args) throws LoginException {
+
 //        String token = "YourToken";
-        String token = "Token HERE!";
+        String token = "";
         prefix = "-";
         builder = JDABuilder.createDefault(token);
 
@@ -42,6 +43,8 @@ public class Main {
         registerListeners();
 
         builder.build();
+
+
     }
 
     public static void registerListeners(){

@@ -26,7 +26,7 @@ public class Main {
 
     public static void main(String[] args) throws LoginException {
 //        String token = "YourToken";
-        String token = "";
+        String token = "Token HERE!";
         prefix = "-";
         builder = JDABuilder.createDefault(token);
 

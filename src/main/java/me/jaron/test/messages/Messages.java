@@ -15,6 +15,7 @@ public class Messages extends ListenerAdapter {
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
 
+        event.getMessage().addReaction("😝").queue();
         if (messageSent.equalsIgnoreCase(Main.prefix + messages)) {
 //            event.getMessage().addReaction(emoji1).queue();
             event.getMessage().getReactionByUnicode(emojiuni);

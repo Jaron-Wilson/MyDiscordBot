@@ -1,12 +1,15 @@
 package me.jaron.test.messages.dmed;
 
 import net.dv8tion.jda.api.entities.User;
+import net.dv8tion.jda.api.events.emote.EmoteAddedEvent;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 
-public class DMMessaged {
+public class DMMessaged extends ListenerAdapter {
 
     public void sendPrivateMessage(User user, String content) {
         // openPrivateChannel provides a RestAction<PrivateChannel>
@@ -22,17 +25,19 @@ public class DMMessaged {
 
         String message = event.getMessage().getContentRaw();
 
-        if (message.equalsIgnoreCase("Hello" + "!")) {
+        if (message.equalsIgnoreCase("Hello")) {
             sendPrivateMessage(event.getAuthor(), "Well hello! How can I help you, today?");
         }else if (message.equalsIgnoreCase("Hi" + "!")) {
             sendPrivateMessage(event.getAuthor(), "Hi! How can I help you, today?");
         }else if (message.equalsIgnoreCase("Hi")) {
             sendPrivateMessage(event.getAuthor(), "Hi! How can I help you, today?");
+        }else if (message.equalsIgnoreCase("I need help with")) {
+            sendPrivateMessage(event.getAuthor(), "I can help with that...");
         }
-
 
         else if (message.equalsIgnoreCase(message)) {
             sendPrivateMessage(event.getAuthor(), "Please explain what you need.");
+
         }
 
     }

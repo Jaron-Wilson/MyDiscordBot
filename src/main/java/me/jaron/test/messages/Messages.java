@@ -1,6 +1,7 @@
 package me.jaron.test.messages;
 
 import me.jaron.test.Main;
+import net.dv8tion.jda.api.entities.Emote;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -17,8 +18,6 @@ public class Messages extends ListenerAdapter {
         if (messageSent.equalsIgnoreCase(Main.prefix + messages)) {
 //            event.getMessage().addReaction(emoji1).queue();
             event.getMessage().getReactionByUnicode(emojiuni);
-
-
         }
     }
 }

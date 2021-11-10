@@ -8,6 +8,7 @@ import me.jaron.test.games.pong.Pong;
 import me.jaron.test.listeners.Announcement;
 import me.jaron.test.messages.Messages;
 import me.jaron.test.messages.PrivateMessage;
+import me.jaron.test.messages.dmed.DMMessaged;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
@@ -52,6 +53,7 @@ public class Main {
         builder.addEventListeners(new Messages());
         builder.addEventListeners(new HelpAndInfo());
         builder.addEventListeners(new TestEmbeds());
+        builder.addEventListeners(new DMMessaged());
 
 
     }

@@ -29,7 +29,7 @@ public class HelpAndInfo extends ListenerAdapter {
             "";
 
     private String Helpmessage =
-            "\n - help (help, Help, Help!, help!) (Shows this menu)" +
+                    "\n - help (help, Help, Help!, help!) (Shows this menu)" +
                     "\n - Announce (sends a message to a certain channel)" +
                     "\n - embed (show an embed message)" +
                     "\n - clear (clears the message you just sent) (so 1 message before you type this command)" +
@@ -41,12 +41,15 @@ public class HelpAndInfo extends ListenerAdapter {
                     "\n - clone Clones the channel you are on." +
                     "\n AboutLach (About Lachlan)" +
                     "\n AboutJA (About JA_RON)" +
-                    "\n got some code from: https://github.com/nkomarn/JDA-Tutorial/releases/tag/5.0";
+                    "\n Got some code from: https://github.com/nkomarn/JDA-Tutorial/releases/tag/5.0";
 
 
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
 
+        if (messageSent.contains(Main.prefix) || messageSent.contains(HELP) || messageSent.contains(INFO) || messageSent.contains(HELP2)) {
+            event.getMessage().addReaction("🗡").queue();
+        }
         if (messageSent.equalsIgnoreCase(Main.prefix + HELP)) {
             event.getMessage().delete().queue();
             EmbedBuilder embedBuilder = new EmbedBuilder();
@@ -56,7 +59,6 @@ public class HelpAndInfo extends ListenerAdapter {
             embedBuilder.setFooter(Whomade);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
-            event.getMessage().addReaction("☮").queue();
 
         }else if (messageSent.equalsIgnoreCase(Main.prefix + HELP2)){
             EmbedBuilder embedBuilder = new EmbedBuilder();

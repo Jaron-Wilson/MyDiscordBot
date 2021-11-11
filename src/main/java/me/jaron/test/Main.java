@@ -40,11 +40,12 @@ public class Main {
         builder = JDABuilder.createDefault(token);
 
 
+        builder.setActivity(Activity.streaming("UHHH","https://github.com/Jaron-Wilson").asRichPresence());
         builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
         builder.setBulkDeleteSplittingEnabled(false);
         builder.setCompression(Compression.NONE);
 
-        builder.setActivity(Activity.watching("Me being made"));
+//        builder.setActivity(Activity.watching("Me being made"));
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
 

@@ -7,6 +7,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
+import java.util.Objects;
 
 public class HelpAndInfo extends ListenerAdapter {
 
@@ -47,9 +48,6 @@ public class HelpAndInfo extends ListenerAdapter {
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
 
-        if (messageSent.contains(Main.prefix) || messageSent.contains(HELP) || messageSent.contains(INFO) || messageSent.contains(HELP2)) {
-            event.getMessage().addReaction("🗡").queue();
-        }
         if (messageSent.equalsIgnoreCase(Main.prefix + HELP)) {
             event.getMessage().delete().queue();
             EmbedBuilder embedBuilder = new EmbedBuilder();
@@ -112,15 +110,6 @@ public class HelpAndInfo extends ListenerAdapter {
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
         } else if (messageSent.equalsIgnoreCase(Main.prefix + INFO)) {
-            event.getMessage().delete().queue();
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(INFO);
-            embedBuilder.setColor(Color.MAGENTA);
-            embedBuilder.setDescription(Infomessage);
-
-            event.getChannel().sendMessage(embedBuilder.build()).queue();
-
-        }else if (INFO.equalsIgnoreCase(messageSent)) {
             event.getMessage().delete().queue();
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setTitle(INFO);

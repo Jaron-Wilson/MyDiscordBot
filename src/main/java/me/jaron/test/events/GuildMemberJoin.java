@@ -67,6 +67,6 @@ public class GuildMemberJoin extends ListenerAdapter {
     @Override
     public void onTextChannelUpdateSlowmode(@NotNull TextChannelUpdateSlowmodeEvent event) {
         event.getOldSlowmode();
-        event.getChannel().sendMessageFormat("HI", event.getNewSlowmode()).queue();
+        event.getChannel().sendMessageFormat("slowmode updated", event.getNewSlowmode()).queue();
     }
 }

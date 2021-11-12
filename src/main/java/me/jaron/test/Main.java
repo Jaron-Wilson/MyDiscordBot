@@ -7,6 +7,7 @@ import me.jaron.test.embeds.TestEmbeds;
 import me.jaron.test.events.GuildMemberJoin;
 import me.jaron.test.events.GuildMemberLeave;
 import me.jaron.test.events.GuildMessageReceived;
+import me.jaron.test.events.ImageSencer;
 import me.jaron.test.games.GuessingGame;
 import me.jaron.test.games.pong.Pong;
 import me.jaron.test.listeners.Announcement;
@@ -39,13 +40,11 @@ public class Main {
         prefix = "-";
         builder = JDABuilder.createDefault(token);
 
-
-        builder.setActivity(Activity.streaming("UHHH","https://github.com/Jaron-Wilson").asRichPresence());
         builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
         builder.setBulkDeleteSplittingEnabled(false);
         builder.setCompression(Compression.NONE);
 
-//        builder.setActivity(Activity.watching("Me being made"));
+        builder.setActivity(Activity.watching("My owner, and making me!"));
         builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
         builder.enableIntents(GatewayIntent.GUILD_MEMBERS);
 
@@ -72,6 +71,7 @@ public class Main {
         builder.addEventListeners(new Clear());
         builder.addEventListeners(new GuildMemberJoin());
         builder.addEventListeners(new GuildMemberLeave());
+        builder.addEventListeners(new ImageSencer());
 //        builder.addEventListeners(new GuildMessageReceived());
 
 

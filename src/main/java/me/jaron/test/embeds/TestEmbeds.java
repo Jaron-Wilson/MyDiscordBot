@@ -32,6 +32,7 @@ public class TestEmbeds extends ListenerAdapter {
             embedBuilder.setColor(Color.RED);
             embedBuilder.setDescription("Description");
             embedBuilder.setFooter("Footer");
+
             // You can do other stuff, like footers and images, but this is the basic idea
 
             // To send it, do this:

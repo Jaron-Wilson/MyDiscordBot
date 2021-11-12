@@ -8,7 +8,10 @@ public class Pong  extends ListenerAdapter{
     public void onMessageReceived(MessageReceivedEvent event) {
         System.out.println("We recieved a message from " +
                 event.getAuthor().getName() + ": " +
-                event.getMessage().getContentDisplay()
+                event.getMessage().getContentDisplay() + " \n" +
+                "Channel name/id: " +
+                event.getChannel()
+
         );
         if (event.getMessage().getContentRaw().equals("!ping")) {
             event.getChannel().sendMessage("Pong!").queue();

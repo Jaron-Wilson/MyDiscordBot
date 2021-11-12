@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 
 public class Announcement extends ListenerAdapter {
 
-    private String emoji1 = "\u1F4AB";
+    private String emoji1 = "\u1F4A";
      String getChannelId;
 
 
@@ -36,7 +36,7 @@ public class Announcement extends ListenerAdapter {
             event.getMessage().delete().queue();
             event.getChannel().sendMessage("Sending Announcement").queue();
             event.getGuild().getTextChannelById("847611877546524692").sendMessage("Announcement Test").queue();
-//            event.getChannel().addReactionById(messageSent, emoji1); // does not work
+            event.getChannel().addReactionById(messageSent, emoji1).queue(); // does not work
 
         } else if (messageSent.equalsIgnoreCase("Announce")) {
             event.getMessage().delete().queue();

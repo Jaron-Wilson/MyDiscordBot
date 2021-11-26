@@ -7,7 +7,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
-import java.util.Objects;
 
 public class HelpAndInfo extends ListenerAdapter {
 

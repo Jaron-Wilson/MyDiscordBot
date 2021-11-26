@@ -2,13 +2,14 @@ package me.jaron.test.messages;
 
 import me.jaron.test.Main;
 import net.dv8tion.jda.api.entities.Emote;
-import net.dv8tion.jda.api.entities.MessageReaction;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
-import java.lang.reflect.Array;
-import java.util.Objects;
+import java.util.List;
 
 public class Messages extends ListenerAdapter {
 
@@ -41,7 +42,21 @@ public class Messages extends ListenerAdapter {
             event.getMessage().addReaction("🤔").queue();
             event.getMessage().addReaction("🗡").queue();
         }
+        else if (messageSent.equalsIgnoreCase(Main.prefix + "bob" + "")) {
+            String url = "http://results.dogpile.com/serp?qc=images&q=";
+            String messageurl = event.getMessage().getContentRaw();
+            String content = event.getMessage().getContentDisplay().replace(Main.prefix +  "bob" , "");
+
+            List<Member> other = event.getChannel().getMembers();
+            other.get(other.size()).modifyNickname("Billy").queue();
+
+            if (messageSent.contains(Main.prefix + "bob")) {
+                event.getChannel().sendMessage("HI").queue();
+                event.getMessage().addReaction("🍑").queue();
+            }
+            event.getChannel().sendMessage(url + content).queue();
+
+            event.getMessage().mentionsEveryone();
+        }
     }
-
-
 }

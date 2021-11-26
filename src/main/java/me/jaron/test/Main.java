@@ -6,8 +6,8 @@ import me.jaron.test.embeds.HelpAndInfo;
 import me.jaron.test.embeds.TestEmbeds;
 import me.jaron.test.events.GuildMemberJoin;
 import me.jaron.test.events.GuildMemberLeave;
-import me.jaron.test.events.GuildMessageReceived;
 import me.jaron.test.events.ImageSencer;
+import me.jaron.test.events.channels.CategoryUpdate;
 import me.jaron.test.games.GuessingGame;
 import me.jaron.test.games.pong.Pong;
 import me.jaron.test.listeners.Announcement;
@@ -15,12 +15,9 @@ import me.jaron.test.messages.Messages;
 import me.jaron.test.messages.PrivateMessage;
 import me.jaron.test.messages.dmed.DMMessaged;
 import me.jaron.test.messages.reactions.GuildMessageReactionAdded;
-import net.dv8tion.jda.api.AccountType;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
-import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.Compression;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
@@ -66,15 +63,23 @@ public class Main {
         builder.addEventListeners(new TestEmbeds());
         builder.addEventListeners(new DMMessaged());
         builder.addEventListeners(new GuildMessageReactionAdded());
+        builder.addEventListeners(new CategoryUpdate());
+        builder.addEventListeners(new ImageSencer());
 
         //not mine copied
         builder.addEventListeners(new Clear());
         builder.addEventListeners(new GuildMemberJoin());
         builder.addEventListeners(new GuildMemberLeave());
-        builder.addEventListeners(new ImageSencer());
 //        builder.addEventListeners(new GuildMessageReceived());
 
 
     }
 
+    public static String getPrefix() {
+        return prefix;
+    }
+
+    public static void setPrefix(String prefix) {
+        Main.prefix = prefix;
+    }
 }

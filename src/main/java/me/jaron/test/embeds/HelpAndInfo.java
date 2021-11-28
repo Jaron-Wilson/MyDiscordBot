@@ -39,6 +39,10 @@ public class HelpAndInfo extends ListenerAdapter {
                     "\n - dm @Name 'message'" + " (Sends a message to the person in the @name and then you put your message in the 'message')" +
                     "\n - Info (info, info!, Info, Info!) (shows info on this bot)" +
                     "\n - clone Clones the channel you are on." +
+                    "\n - remove" +
+                    "\n - bob (URL)" +
+                    "\n - image" +
+                    "\n - delete enable (true) OR (false)" +
                     "\n AboutLach (About Lachlan)" +
                     "\n AboutJA (About JA_RON)" +
                     "\n Got some code from: https://github.com/nkomarn/JDA-Tutorial/releases/tag/5.0";
@@ -47,7 +51,7 @@ public class HelpAndInfo extends ListenerAdapter {
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
 
-        if (messageSent.equalsIgnoreCase(Main.prefix + HELP)) {
+        if (messageSent.contains(Main.prefix + HELP)) {
             event.getMessage().delete().queue();
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setTitle(COMMANDS);
@@ -57,7 +61,7 @@ public class HelpAndInfo extends ListenerAdapter {
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        }else if (messageSent.equalsIgnoreCase(Main.prefix + HELP2)){
+        }else if (messageSent.contains(Main.prefix + HELP2)){
             EmbedBuilder embedBuilder = new EmbedBuilder();
             event.getMessage().delete().queue();
             embedBuilder.setTitle(COMMANDS);
@@ -67,7 +71,7 @@ public class HelpAndInfo extends ListenerAdapter {
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        }else if (messageSent.equalsIgnoreCase("AboutLach")){
+        }else if (messageSent.contains("AboutLach")){
             EmbedBuilder embedBuilder = new EmbedBuilder();
             event.getMessage().delete().queue();
             embedBuilder.setTitle("About Lachlan");
@@ -78,7 +82,7 @@ public class HelpAndInfo extends ListenerAdapter {
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        }else if (messageSent.equalsIgnoreCase("AboutJA")) {
+        }else if (messageSent.contains("AboutJA")) {
             EmbedBuilder embedBuilder = new EmbedBuilder();
             event.getMessage().delete().queue();
             embedBuilder.setTitle("About JA_RON");
@@ -88,7 +92,7 @@ public class HelpAndInfo extends ListenerAdapter {
             embedBuilder.setImage(JA_RONIcon);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
-        }else if (messageSent.equalsIgnoreCase(HELP)){
+        }else if (messageSent.contains(HELP)){
             EmbedBuilder embedBuilder = new EmbedBuilder();
             event.getMessage().delete().queue();
             embedBuilder.setTitle(COMMANDS);
@@ -98,7 +102,7 @@ public class HelpAndInfo extends ListenerAdapter {
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        } else if (INFO.equalsIgnoreCase(messageSent)) {
+        } else if (INFO.contains(messageSent)) {
             event.getMessage().delete().queue();
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setTitle(INFO);
@@ -108,7 +112,7 @@ public class HelpAndInfo extends ListenerAdapter {
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        } else if (messageSent.equalsIgnoreCase(Main.prefix + INFO)) {
+        } else if (messageSent.contains(Main.prefix + INFO)) {
             event.getMessage().delete().queue();
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setTitle(INFO);
@@ -117,7 +121,7 @@ public class HelpAndInfo extends ListenerAdapter {
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        }else if (messageSent.equalsIgnoreCase(INFO + "!")) {
+        }else if (messageSent.contains(INFO + "!")) {
             event.getMessage().delete().queue();
             EmbedBuilder embedBuilder = new EmbedBuilder();
             embedBuilder.setTitle(INFO);

@@ -3,19 +3,15 @@ package me.jaron.test.events;
 
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.events.channel.text.update.TextChannelUpdateSlowmodeEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleAddEvent;
-import net.dv8tion.jda.api.events.message.MessageDeleteEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.Locale;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
 public class GuildMemberJoin extends ListenerAdapter {
     String[] messages = new String[]{"[member] joined. You must construct additional pylons.", "Never gonna give [member] up. Never let [member] down!", "Hey! Listen! [member] has joined!", "Ha! [member] has joined! You activated my trap card!", "We've been expecting you, [member].", "It's dangerous to go alone, take [member]!", "Swoooosh. [member] just landed.", "Brace yourselves. [member] just joined the server.", "A wild [member] appeared."};
+
 
     public GuildMemberJoin() {
     }
@@ -42,18 +38,4 @@ public class GuildMemberJoin extends ListenerAdapter {
 //        event.getGuild().addRoleToMember(event.getMember(), (Role) event.getGuild().getRolesByName("Member", true)).complete();
     }
 
-    int counter = 0;
-    public void onMessageDelete(@NotNull MessageDeleteEvent event) {
-
-        counter++;
-        event.getChannel().sendMessage(String.format("Your deleted count is up to: %d", counter)).queue();
-        event.getChannel().sendTyping().queue();
-        event.getChannel().sendTyping().completeAfter(3, TimeUnit.SECONDS);
-    }
-
-    @Override
-    public void onTextChannelUpdateSlowmode(@NotNull TextChannelUpdateSlowmodeEvent event) {
-        event.getOldSlowmode();
-        event.getChannel().sendMessageFormat("slowmode updated", event.getNewSlowmode()).queue();
-    }
 }

@@ -1,13 +1,17 @@
 package me.jaron.test;
 
-import me.jaron.test.commands.Clear;
 import me.jaron.test.commands.Clearcommand;
+import me.jaron.test.counters.DeleteCounter;
 import me.jaron.test.embeds.HelpAndInfo;
 import me.jaron.test.embeds.TestEmbeds;
 import me.jaron.test.events.GuildMemberJoin;
 import me.jaron.test.events.GuildMemberLeave;
 import me.jaron.test.events.ImageSencer;
 import me.jaron.test.events.channels.CategoryUpdate;
+import me.jaron.test.events.image.ImageManipulator;
+import me.jaron.test.filter.Filter;
+import me.jaron.test.filter.FilterMessage;
+import me.jaron.test.filter.FilterOnOff;
 import me.jaron.test.games.GuessingGame;
 import me.jaron.test.games.pong.Pong;
 import me.jaron.test.listeners.Announcement;
@@ -65,13 +69,15 @@ public class Main {
         builder.addEventListeners(new GuildMessageReactionAdded());
         builder.addEventListeners(new CategoryUpdate());
         builder.addEventListeners(new ImageSencer());
+        builder.addEventListeners(new DeleteCounter());
 
         //not mine copied
-        builder.addEventListeners(new Clear());
         builder.addEventListeners(new GuildMemberJoin());
         builder.addEventListeners(new GuildMemberLeave());
-//        builder.addEventListeners(new GuildMessageReceived());
-
+        builder.addEventListeners(new ImageManipulator());
+        builder.addEventListeners(new Filter());
+        builder.addEventListeners(new FilterMessage());
+        builder.addEventListeners(new FilterOnOff());
 
     }
 

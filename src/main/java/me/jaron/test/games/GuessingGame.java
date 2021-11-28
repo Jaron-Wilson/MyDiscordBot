@@ -15,6 +15,7 @@ public class GuessingGame extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(@NotNull GuildMessageReceivedEvent event) {
+
         String messageSent = event.getMessage().getContentRaw();
 
         if (messageSent.equalsIgnoreCase(Main.prefix + "StartGGame")) {

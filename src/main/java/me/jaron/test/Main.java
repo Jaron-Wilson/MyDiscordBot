@@ -1,5 +1,6 @@
 package me.jaron.test;
 
+import me.jaron.test.calculator.Calculate;
 import me.jaron.test.commands.Clearcommand;
 import me.jaron.test.counters.DeleteCounter;
 import me.jaron.test.embeds.HelpAndInfo;
@@ -78,6 +79,7 @@ public class Main {
         builder.addEventListeners(new Filter());
         builder.addEventListeners(new FilterMessage());
         builder.addEventListeners(new FilterOnOff());
+        builder.addEventListeners(new Calculate());
 
     }
 

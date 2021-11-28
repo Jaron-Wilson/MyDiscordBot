@@ -12,37 +12,46 @@ public class DeleteCounter extends ListenerAdapter {
     public boolean isEnabledd = false;
     public int timesTried = 0;
     private int counter = 0;
+    public boolean sendDeleteMessage = false;
 
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
 
-       if (messageSent.equalsIgnoreCase(Main.prefix + "delete enable " + !isEnabledd)) {
+       if (messageSent.equalsIgnoreCase(Main.prefix + "delete " + !isEnabledd)) {
             if (isEnabledd) {
-
-                event.getChannel().sendMessage("It is currently: " + !isEnabledd + " ,It is currently: disabled").queue();
+                event.getChannel().sendMessage("It is currently: " + !isEnabledd + ", It is currently: disabled").queue();
             }else {
-                event.getChannel().sendMessage("It is currently: " + !isEnabledd + " ,It is currently: enabled").queue();
+                event.getChannel().sendMessage("It is currently: " + !isEnabledd + ", It is currently: enabled").queue();
             }
             isEnabledd = !isEnabledd;
-        } else {
-            if (!event.getMessage().getAuthor().isBot()) {
-                event.getChannel().sendMessage("Deleting game/count is: " + isEnabledd).queue();
-            }else {
-                System.out.println("TRIED: " + timesTried);
-            }
+       } else if (messageSent.equalsIgnoreCase(Main.prefix + "delete messages " + !sendDeleteMessage)){
+           event.getChannel().sendMessage("Delete Messages are: " + !sendDeleteMessage).queue();
+           sendDeleteMessage = !sendDeleteMessage;
 
-        }
+       } else if (messageSent.equalsIgnoreCase(Main.prefix + "delete messages " + sendDeleteMessage)){
+           event.getChannel().sendMessage("Delete Messages are: " + sendDeleteMessage).queue();
+
+       }
     }
 
 
+    int countdeletetrys = 0;
     public void onMessageDelete(@NotNull MessageDeleteEvent event) {
         if (isEnabledd == false) {
-            event.getChannel().sendMessage(String.format("You need to enable it with: %s Delete %b", Main.prefix, isEnabledd)).queue();
-        }else if (isEnabledd == true) {
+            if ((countdeletetrys <= 4) && (sendDeleteMessage == true))  {
+                event.getChannel().sendMessage(String.format("You need to enable it with: %s Delete %b", Main.prefix, isEnabledd)).queue();
+                countdeletetrys++;
+            }
+        }else if ((isEnabledd == true) && (sendDeleteMessage == true)) {
             counter++;
             event.getChannel().sendMessage(String.format("Your deleted count is up to: %d", counter)).queue();
         } else {
-            event.getChannel().sendMessage(String.format("You need to enable it with: %s Delete %b", Main.prefix, isEnabledd)).queue();
+            if ((countdeletetrys <= 4) && (sendDeleteMessage == true)) {
+                event.getChannel().sendMessage(String.format("You need to enable it with: %s Delete %b !", Main.prefix, isEnabledd)).queue();
+                countdeletetrys++;
+            } else {
+                System.out.println("NO");
+            }
         }
     }
 

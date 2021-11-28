@@ -6,7 +6,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 public class Filter extends ListenerAdapter {
     public void onGuildMessageReceived(GuildMessageReceivedEvent e) {
         if(FilterOnOff.filterOn){
-            String[] LIST_OF_BAD_WORDS = {"al", "anal", "anus", "arse", "ass", "motherfucker", "balls", "bastard", "bitch", "blowjob", "blow job", "buttplug","cock","coon","cunt","dildo","fag","dyke","fuck","fucking","nigger","Goddamn","jizz","nigga","pussy","shit","whore"};
+            String[] LIST_OF_BAD_WORDS = {"anal", "anus", "arse", "ass", "motherfucker", "balls", "bastard", "bitch", "blowjob", "blow job", "buttplug","cock","coon","cunt","dildo","fag","dyke","fuck","fucking","nigger","Goddamn","jizz","nigga","pussy","shit","whore"};
             String[] message = e.getMessage().getContentRaw().split(" ");
             for(int i = 0;i < message.length;i++){
                 boolean badWord = false;
@@ -16,7 +16,7 @@ public class Filter extends ListenerAdapter {
                         e.getMessage().delete().queue();
                         badWord = true;
                         if(FilterMessage.allowed){ //Prints a message saying watch your language IF enabled by -filtermessage
-                            e.getChannel().sendMessage("Watch yo vernacular " + e.getMember().getUser().getName()).queue();
+                            e.getChannel().sendMessage("Watch yo Language BOI " + e.getMember().getUser().getName()).queue();
                         }
                     }
                 }

@@ -1,15 +1,16 @@
 package me.jaron.test.embeds;
 
 import me.jaron.test.Main;
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.*;
+import net.dv8tion.jda.api.events.message.guild.*;
+import net.dv8tion.jda.api.hooks.*;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
 
 public class HelpAndInfo extends ListenerAdapter {
 
+    EmbedBuilder embedBuilder = new EmbedBuilder();
     private String HELP = "help";
     private String HELP2 = "Help!";
     private String INFO = "Info";
@@ -30,6 +31,7 @@ public class HelpAndInfo extends ListenerAdapter {
 
     private String Helpmessage =
                     "\n - help (help, Help, Help!, help!) (Shows this menu)" +
+                    "\n - Info (info, info!, Info, Info!) (shows info on this bot)" +
                     "\n - Announce (sends a message to a certain channel)" +
                     "\n - embed (show an embed message)" +
                     "\n - clear (clears the message you just sent) (so 1 message before you type this command)" +
@@ -37,12 +39,17 @@ public class HelpAndInfo extends ListenerAdapter {
                     "\n - PrivateMessage " + "or" + " - PM" + " (Bot sends a private message to you)" +
                     "\n - StartGGame (number guessing game 0 - 10)" +
                     "\n - dm @Name 'message'" + " (Sends a message to the person in the @name and then you put your message in the 'message')" +
-                    "\n - Info (info, info!, Info, Info!) (shows info on this bot)" +
                     "\n - clone Clones the channel you are on." +
                     "\n - remove" +
                     "\n - bob (URL)" +
                     "\n - image" +
-                    "\n - delete enable (true) OR (false)" +
+                    "\n \n FILTERS!" +
+                    "\n - filtermessage" +
+                    "\n - togglefilter" +
+                    "\n \n DELETE MESSAGES " +
+                    "\n - delete (true) OR (false)" +
+                    "\n - delete messages (false) OR (true)" +
+                    "\n \n ABOUT MESSAGES " +
                     "\n AboutLach (About Lachlan)" +
                     "\n AboutJA (About JA_RON)" +
                     "\n Got some code from: https://github.com/nkomarn/JDA-Tutorial/releases/tag/5.0";
@@ -51,18 +58,9 @@ public class HelpAndInfo extends ListenerAdapter {
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
 
-        if (messageSent.contains(Main.prefix + HELP)) {
-            event.getMessage().delete().queue();
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(COMMANDS);
-            embedBuilder.setColor(Color.BLUE);
-            embedBuilder.setDescription(Helpmessage);
-            embedBuilder.setFooter(Whomade);
+//        HELP!
+        if ((messageSent.equalsIgnoreCase(Main.prefix + HELP)) || (messageSent.equalsIgnoreCase(HELP) || (messageSent.equalsIgnoreCase(Main.prefix + HELP2)))) {
 
-            event.getChannel().sendMessage(embedBuilder.build()).queue();
-
-        }else if (messageSent.contains(Main.prefix + HELP2)){
-            EmbedBuilder embedBuilder = new EmbedBuilder();
             event.getMessage().delete().queue();
             embedBuilder.setTitle(COMMANDS);
             embedBuilder.setColor(Color.BLUE);
@@ -71,20 +69,23 @@ public class HelpAndInfo extends ListenerAdapter {
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        }else if (messageSent.contains("AboutLach")){
-            EmbedBuilder embedBuilder = new EmbedBuilder();
+        }
+//        INFO!
+        if ((INFO.equalsIgnoreCase(messageSent)) || (messageSent.equalsIgnoreCase(Main.prefix + INFO)) || (messageSent.equalsIgnoreCase(INFO + "!")) ) {
             event.getMessage().delete().queue();
-            embedBuilder.setTitle("About Lachlan");
-            embedBuilder.setColor(Color.ORANGE);
-            embedBuilder.setDescription("Lachlan helped make this bot and...");
+            embedBuilder.setTitle(INFO);
+            embedBuilder.setColor(Color.MAGENTA);
+            embedBuilder.setDescription(Infomessage);
             embedBuilder.setFooter(Whomade);
-            embedBuilder.setImage(LachlanIcon);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 
-        }else if (messageSent.contains("AboutJA")) {
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            event.getMessage().delete().queue();
+        }
+
+        //ABOUTS
+
+        if (messageSent.equalsIgnoreCase("AboutJA")) {
+//            event.getMessage().delete().queue();
             embedBuilder.setTitle("About JA_RON");
             embedBuilder.setColor(Color.GRAY);
             embedBuilder.setDescription("JA_RON#9792 made this bot using intellij's newest update and got help from Lachlan");
@@ -92,41 +93,14 @@ public class HelpAndInfo extends ListenerAdapter {
             embedBuilder.setImage(JA_RONIcon);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
-        }else if (messageSent.contains(HELP)){
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            event.getMessage().delete().queue();
-            embedBuilder.setTitle(COMMANDS);
-            embedBuilder.setColor(Color.BLUE);
-            embedBuilder.setDescription(Helpmessage);
+        }
+        else if (messageSent.equalsIgnoreCase("AboutLach")){
+//            event.getMessage().delete().queue();
+            embedBuilder.setTitle("About Lachlan");
+            embedBuilder.setColor(Color.ORANGE);
+            embedBuilder.setDescription("Lachlan helped make this bot and...");
             embedBuilder.setFooter(Whomade);
-
-            event.getChannel().sendMessage(embedBuilder.build()).queue();
-
-        } else if (INFO.contains(messageSent)) {
-            event.getMessage().delete().queue();
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(INFO);
-            embedBuilder.setColor(Color.MAGENTA);
-            embedBuilder.setDescription(Infomessage);
-            embedBuilder.setFooter(Whomade);
-
-            event.getChannel().sendMessage(embedBuilder.build()).queue();
-
-        } else if (messageSent.contains(Main.prefix + INFO)) {
-            event.getMessage().delete().queue();
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(INFO);
-            embedBuilder.setColor(Color.MAGENTA);
-            embedBuilder.setDescription(Infomessage);
-
-            event.getChannel().sendMessage(embedBuilder.build()).queue();
-
-        }else if (messageSent.contains(INFO + "!")) {
-            event.getMessage().delete().queue();
-            EmbedBuilder embedBuilder = new EmbedBuilder();
-            embedBuilder.setTitle(INFO);
-            embedBuilder.setColor(Color.MAGENTA);
-            embedBuilder.setDescription(Infomessage);
+            embedBuilder.setImage(LachlanIcon);
 
             event.getChannel().sendMessage(embedBuilder.build()).queue();
 

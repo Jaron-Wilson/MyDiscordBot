@@ -1,11 +1,9 @@
 package me.jaron.test.events;
 
-
-import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Role;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent;
-import net.dv8tion.jda.api.events.guild.member.GuildMemberRoleAddEvent;
-import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.*;
+import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.events.guild.member.*;
+import net.dv8tion.jda.api.hooks.*;
 import java.util.Locale;
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package me.jaron.test.calculator;
+package me.jaron.test.events.calculator;
 
 import me.jaron.test.Main;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;

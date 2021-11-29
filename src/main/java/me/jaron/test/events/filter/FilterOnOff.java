@@ -1,4 +1,4 @@
-package me.jaron.test.filter;
+package me.jaron.test.events.filter;
 
 import me.jaron.test.Main;
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;

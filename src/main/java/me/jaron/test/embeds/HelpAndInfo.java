@@ -30,26 +30,48 @@ public class HelpAndInfo extends ListenerAdapter {
             "";
 
     private String Helpmessage =
+
+                    "\n \n ----Help and info!----" +
                     "\n - help (help, Help, Help!, help!) (Shows this menu)" +
                     "\n - Info (info, info!, Info, Info!) (shows info on this bot)" +
-                    "\n - Announce (sends a message to a certain channel)" +
+
+                    "\n \n ----COMMANDS----" +
                     "\n - embed (show an embed message)" +
+
+                    "\n \n ----Announcements----" +
+                    "\n - Announce (sends a message to a certain channel)" +
+                    "\n - channelid = getchannelid" +
+                    "\n - channelid" +
+
+                    "\n \n ----CLEAR----" +
                     "\n - clear (clears the message you just sent) (so 1 message before you type this command)" +
                     "\n - clearall (clears all before 2 weeks)" +
-                    "\n - PrivateMessage " + "or" + " - PM" + " (Bot sends a private message to you)" +
+                    "\n - clear (AMOUNT)" +
+
+                    "\n\n ----GAMES----" +
                     "\n - StartGGame (number guessing game 0 - 10)" +
-                    "\n - dm @Name 'message'" + " (Sends a message to the person in the @name and then you put your message in the 'message')" +
-                    "\n - clone Clones the channel you are on." +
+
+                    "\n \n ----Channel Commands----" +
+                    "\n - clone (Clones the channel you are on.)" +
                     "\n - remove" +
+
+                    "\n \n ----IMAGES----" +
                     "\n - bob (URL)" +
                     "\n - image" +
-                    "\n \n FILTERS!" +
+
+                    "\n \n ----PRIVATE MESSAGES----" +
+                    "\n - PrivateMessage " + "or" + " - PM" + " (Bot sends a private message to you)" +
+                    "\n - dm @Name 'message'" + " (Sends a message to the person in the @name and then you put your message in the 'message')" +
+
+                    "\n \n ----FILTERS----" +
                     "\n - filtermessage" +
                     "\n - togglefilter" +
-                    "\n \n DELETE MESSAGES " +
+
+                    "\n \n ----DELETE MESSAGES----" +
                     "\n - delete (true) OR (false)" +
                     "\n - delete messages (false) OR (true)" +
-                    "\n \n ABOUT MESSAGES " +
+
+                    "\n \n ----ABOUT MESSAGES----" +
                     "\n AboutLach (About Lachlan)" +
                     "\n AboutJA (About JA_RON)" +
                     "\n Got some code from: https://github.com/nkomarn/JDA-Tutorial/releases/tag/5.0";

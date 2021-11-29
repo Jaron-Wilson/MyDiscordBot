@@ -1,4 +1,4 @@
-package me.jaron.test.events;
+package me.jaron.test.events.image;
 
 import me.jaron.test.Main;
 import net.dv8tion.jda.api.EmbedBuilder;

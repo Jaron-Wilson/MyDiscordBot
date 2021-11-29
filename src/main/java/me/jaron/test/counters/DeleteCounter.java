@@ -39,8 +39,7 @@ public class DeleteCounter extends ListenerAdapter {
     public void onMessageDelete(@NotNull MessageDeleteEvent event) {
         if (isEnabledd == false) {
             if ((countdeletetrys <= 4) && (sendDeleteMessage == true))  {
-                event.getChannel().sendMessage(String.format("You need to enable it with: %s Delete %b", Main.prefix, isEnabledd)).queue();
-                countdeletetrys++;
+                event.getChannel().sendMessage(String.format("You need to enable it with: %sdelete true" + "Or disable this message with %sdelete messages false", Main.prefix)).queue();countdeletetrys++;
             }
         }else if ((isEnabledd == true) && (sendDeleteMessage == true)) {
             counter++;

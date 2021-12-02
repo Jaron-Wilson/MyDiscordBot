@@ -12,13 +12,19 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class ImageManipulator extends ListenerAdapter {
+    public ImageManipulator() throws IOException {}
+    List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
     //https://github.com/coobird/thumbnailator <---- the api I used
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent e) {
         String[] message = e.getMessage().getContentRaw().split(" ");
-        if(message.length > 1 && message[0].equalsIgnoreCase(Main.prefix + "image")){
+        if(message.length > 1 && message[0].equalsIgnoreCase(list.get(2) + "image")){
             try{
                 URL imageUrl = new URL(message[3]); //Takes the url and stores it as a URL object
                 int width = Integer.parseInt(message[1]);

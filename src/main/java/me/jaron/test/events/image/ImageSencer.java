@@ -10,10 +10,17 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Random;
 
 public class ImageSencer extends ListenerAdapter {
+    public ImageSencer() throws IOException {}
+    List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
 
     public String description = "Here Is your meme to cheer you up!";
 
@@ -33,7 +40,7 @@ public class ImageSencer extends ListenerAdapter {
 
 
                         // Upload and send an image to current channel
-        if (message.equalsIgnoreCase(Main.prefix + "coolimage") || message.equalsIgnoreCase( "coolimage")) {
+        if (message.equalsIgnoreCase(list.get(2) + "coolimage") || message.equalsIgnoreCase( "coolimage")) {
             event.getChannel().sendMessage(channelName).queue();
             try {
                 URL url = new URL("https://images-na.ssl-images-amazon.com/images/I/71IHB9-yapL.png");
@@ -47,7 +54,7 @@ public class ImageSencer extends ListenerAdapter {
             // Upload and send an image to current channel
         }
 
-        if ((message.equalsIgnoreCase( Main.prefix + "image") || message.equalsIgnoreCase("image"))) {
+        if ((message.equalsIgnoreCase( list.get(2) + "image") || message.equalsIgnoreCase("image"))) {
 
             Random rand = new Random(); //instance of random class
             int upperbound = 10;

@@ -4,13 +4,19 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.events.guild.member.GuildMemberLeaveEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Random;
 
 public class GuildMemberLeave extends ListenerAdapter {
-    String[] messages = new String[]{"[member] left, the party's over."};
+    public GuildMemberLeave() throws IOException {}
 
-    public GuildMemberLeave() {
-    }
+    List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
+
+    String[] messages = new String[]{"[member] left, the party's over."};
 
     public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
         Random rand = new Random();

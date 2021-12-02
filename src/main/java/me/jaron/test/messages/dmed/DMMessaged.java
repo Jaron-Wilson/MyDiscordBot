@@ -4,7 +4,15 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.priv.PrivateMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
 public class DMMessaged extends ListenerAdapter {
+    public DMMessaged() throws IOException {}
+    List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
 
     public void sendPrivateMessage(User user, String content) {
         // openPrivateChannel provides a RestAction<PrivateChannel>

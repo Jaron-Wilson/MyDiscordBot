@@ -6,9 +6,15 @@ import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 public class Messages extends ListenerAdapter {
+    public Messages() throws IOException {}
+    List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
 
     String emojiuni = "U+1F47E";
     String emojiuni1 = "\uD83D\uDC7E";
@@ -16,7 +22,7 @@ public class Messages extends ListenerAdapter {
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
 
-        if (messageSent.equalsIgnoreCase(Main.prefix + "clone")) {
+        if (messageSent.equalsIgnoreCase(list.get(2) + "clone")) {
             event.getChannel().createCopy().queue();
 
             event.getMessage().addReaction("😝").queue();
@@ -25,7 +31,7 @@ public class Messages extends ListenerAdapter {
             return;
         }
 
-        if (messageSent.equalsIgnoreCase(Main.prefix + "remove")) {
+        if (messageSent.equalsIgnoreCase(list.get(2) + "remove")) {
             event.getChannel().delete().queue();
             event.getMessage().addReaction("😝").queue();
             event.getMessage().addReaction("🗡").queue();
@@ -40,15 +46,15 @@ public class Messages extends ListenerAdapter {
         }
 
 
-        else if (messageSent.equalsIgnoreCase(Main.prefix + "bob")) {
+        else if (messageSent.equalsIgnoreCase(list.get(2) + "bob")) {
             String url = "http://results.dogpile.com/serp?qc=images&q=";
             String messageurl = event.getMessage().getContentRaw();
-            String content = event.getMessage().getContentDisplay().replace(Main.prefix +  "bob" , "");
+            String content = event.getMessage().getContentDisplay().replace(list.get(2) +  "bob" , "");
 
             List<Member> other = event.getChannel().getMembers();
             other.get(other.size()).modifyNickname("Billy").queue();
 
-            if (messageSent.contains(Main.prefix + "bob")) {
+            if (messageSent.contains(list.get(2) + "bob")) {
                 event.getChannel().sendMessage("HI").queue();
                 event.getMessage().addReaction("🍑").queue();
             }

@@ -1,5 +1,9 @@
 package me.jaron.test;
 
+import com.jagrosh.jdautilities.command.CommandClientBuilder;
+import com.jagrosh.jdautilities.examples.command.AboutCommand;
+import com.jagrosh.jdautilities.examples.command.PingCommand;
+import com.jagrosh.jdautilities.examples.command.ShutdownCommand;
 import me.jaron.test.events.calculator.Calculate;
 import me.jaron.test.commands.Clearcommand;
 import me.jaron.test.counters.DeleteCounter;
@@ -14,6 +18,9 @@ import me.jaron.test.events.filter.Filter;
 import me.jaron.test.events.filter.FilterMessage;
 import me.jaron.test.events.filter.FilterOnOff;
 import me.jaron.test.events.slashcommands.SlashPong;
+import me.jaron.test.examplebot.commands.CatCommands;
+import me.jaron.test.examplebot.commands.ChooseCommand;
+import me.jaron.test.examplebot.commands.HelloCommand;
 import me.jaron.test.games.GuessingGame;
 import me.jaron.test.games.pong.Pong;
 import me.jaron.test.listeners.Announcement;
@@ -24,13 +31,19 @@ import me.jaron.test.messages.reactions.GuildMessageReactionAdded;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
+import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.Compression;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import javax.security.auth.login.LoginException;
+import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.EnumSet;
+import java.util.List;
 
 public class Main {
 
@@ -38,14 +51,18 @@ public class Main {
 
     public static String prefix;
 
-    public static void main(String[] args) throws LoginException {
+
+    public Main() throws IOException {}
+
+    public static void main(String[] args) throws LoginException, IOException {
+        Main2 main2 = new Main2();
+//        List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
+//       main2.getList().get(2);
 
 //        String token = "YourToken";
-        String token = "";
-        prefix = "-";
-        builder = JDABuilder.createDefault(token);
-//        JDA jda = JDABuilder.createLight(token, EnumSet.noneOf(GatewayIntent.class)); // slash commands don't need any intents
-//        builder.createLight(token, EnumSet.noneOf(GatewayIntent.class)); // slash commands don't need any intents
+//        prefix = "-";
+        builder = JDABuilder.createDefault(main2.getList().get(2));
 
 
         builder.disableCache(CacheFlag.MEMBER_OVERRIDES, CacheFlag.VOICE_STATE);
@@ -62,7 +79,7 @@ public class Main {
 
     }
 
-    public static void registerListeners(){
+    public static void registerListeners() throws IOException {
 
         builder.addEventListeners(new Pong());
         builder.addEventListeners(new Announcement());
@@ -77,7 +94,6 @@ public class Main {
         builder.addEventListeners(new CategoryUpdate());
         builder.addEventListeners(new ImageSencer());
         builder.addEventListeners(new DeleteCounter());
-        builder.addEventListeners(new SlashPong());
 
         //not mine copied
         builder.addEventListeners(new GuildMemberJoin());

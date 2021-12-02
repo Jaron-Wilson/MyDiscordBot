@@ -30,15 +30,41 @@
 
 
         <!--        Added-->
+
+        <dependency>
+            <groupId>com.jagrosh</groupId>
+            <artifactId>jda-utilities</artifactId>
+            <version>3.0.5</version>
+            <scope>compile</scope>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>com.jagrosh</groupId>
+            <!-- Notice that the dependency notation ends with "-command" -->
+            <artifactId>jda-utilities-command</artifactId>
+            <version>3.0.5</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.mashape.unirest</groupId>
+            <artifactId>unirest-java</artifactId>
+            <version>1.4.9</version>
+            <type>jar</type>
+        </dependency>
+
         <dependency>
             <groupId>net.coobird</groupId>
             <artifactId>thumbnailator</artifactId>
             <version>[0.4, 0.5)</version>
         </dependency>
 
+
     </dependencies>
     
     <repositories>
+
         <repository>
             <id>jcenter</id>
             <name>jcenter-bintray</name>

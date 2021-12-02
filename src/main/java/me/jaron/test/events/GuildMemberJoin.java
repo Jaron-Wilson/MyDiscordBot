@@ -4,15 +4,21 @@ import net.dv8tion.jda.api.*;
 import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.guild.member.*;
 import net.dv8tion.jda.api.hooks.*;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
 public class GuildMemberJoin extends ListenerAdapter {
+    public GuildMemberJoin() throws IOException {}
+
+    List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
+
     String[] messages = new String[]{"[member] joined. You must construct additional pylons.", "Never gonna give [member] up. Never let [member] down!", "Hey! Listen! [member] has joined!", "Ha! [member] has joined! You activated my trap card!", "We've been expecting you, [member].", "It's dangerous to go alone, take [member]!", "Swoooosh. [member] just landed.", "Brace yourselves. [member] just joined the server.", "A wild [member] appeared."};
-
-
-    public GuildMemberJoin() {
-    }
 
     public void onGuildMemberJoin(GuildMemberJoinEvent event) {
         Random rand = new Random();

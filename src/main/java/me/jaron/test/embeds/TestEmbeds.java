@@ -7,13 +7,20 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class TestEmbeds extends ListenerAdapter {
+    public TestEmbeds() throws IOException {}
+    List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
 
     public void onGuildMessageReceived(@Nonnull GuildMessageReceivedEvent event) {
         String messageSent = event.getMessage().getContentRaw();
 
-        if (messageSent.equalsIgnoreCase(Main.prefix + "embed")) {
+        if (messageSent.equalsIgnoreCase(list.get(2) + "embed")) {
             EmbedBuilder embedBuilder = new EmbedBuilder();
 
             embedBuilder.setTitle("Title");

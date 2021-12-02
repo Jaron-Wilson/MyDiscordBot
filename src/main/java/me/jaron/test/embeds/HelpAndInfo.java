@@ -7,8 +7,15 @@ import net.dv8tion.jda.api.hooks.*;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class HelpAndInfo extends ListenerAdapter {
+    public HelpAndInfo() throws IOException {}
+    List<String> list = Files.readAllLines(Paths.get("src/main/java/me/jaron/test/examplebot/config.txt"));//"config.txt"));
+
 
     EmbedBuilder embedBuilder = new EmbedBuilder();
     private String HELP = "help";
@@ -81,7 +88,7 @@ public class HelpAndInfo extends ListenerAdapter {
         String messageSent = event.getMessage().getContentRaw();
 
 //        HELP!
-        if ((messageSent.equalsIgnoreCase(Main.prefix + HELP)) || (messageSent.equalsIgnoreCase(HELP) || (messageSent.equalsIgnoreCase(Main.prefix + HELP2)))) {
+        if ((messageSent.equalsIgnoreCase(list.get(2) + HELP)) || (messageSent.equalsIgnoreCase(HELP) || (messageSent.equalsIgnoreCase(list.get(2) + HELP2)))) {
 
             event.getMessage().delete().queue();
             embedBuilder.setTitle(COMMANDS);
@@ -93,7 +100,7 @@ public class HelpAndInfo extends ListenerAdapter {
 
         }
 //        INFO!
-        if ((INFO.equalsIgnoreCase(messageSent)) || (messageSent.equalsIgnoreCase(Main.prefix + INFO)) || (messageSent.equalsIgnoreCase(INFO + "!")) ) {
+        if ((INFO.equalsIgnoreCase(messageSent)) || (messageSent.equalsIgnoreCase(list.get(2) + INFO)) || (messageSent.equalsIgnoreCase(INFO + "!")) ) {
             event.getMessage().delete().queue();
             embedBuilder.setTitle(INFO);
             embedBuilder.setColor(Color.MAGENTA);

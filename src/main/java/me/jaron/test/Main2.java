@@ -1,5 +1,8 @@
 package me.jaron.test;
 
+import me.jaron.test.commands.MuteTests;
+import me.jaron.test.commands.images.PicCommands;
+import me.jaron.test.examplebot.commands.CatCommand;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.AboutCommand;
@@ -18,7 +21,6 @@ import me.jaron.test.events.filter.FilterMessage;
 import me.jaron.test.events.filter.FilterOnOff;
 import me.jaron.test.events.image.ImageManipulator;
 import me.jaron.test.events.image.ImageSencer;
-import me.jaron.test.examplebot.commands.CatCommands;
 import me.jaron.test.examplebot.commands.ChooseCommand;
 import me.jaron.test.examplebot.commands.HelloCommand;
 import me.jaron.test.games.GuessingGame;
@@ -33,9 +35,6 @@ import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.exceptions.RateLimitedException;
-import net.dv8tion.jda.api.requests.GatewayIntent;
-import net.dv8tion.jda.api.utils.Compression;
-import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import javax.security.auth.login.LoginException;
 import java.awt.*;
@@ -46,7 +45,9 @@ import java.util.List;
 
 
 class RegisterListeners {
-    RegisterListeners() throws IOException {}
+    RegisterListeners() throws IOException {
+
+    }
 
     Pong pong = new Pong();
     Announcement announcement = new Announcement();
@@ -60,6 +61,7 @@ class RegisterListeners {
     GuildMessageReactionAdded guildMessageReactionAdded = new GuildMessageReactionAdded();
     CategoryUpdate categoryUpdate = new CategoryUpdate();
     ImageSencer imageSencer = new ImageSencer();
+    MuteTests muteTests = new MuteTests();
 
     DeleteCounter deleteCounter = new DeleteCounter();
     //not mine copied
@@ -122,7 +124,7 @@ public class Main2 {
                         new Permission[]{Permission.ADMINISTRATOR}),
 
                 // command to show a random cat
-                new CatCommands(),
+                new CatCommand(),
 
                 // command to make a random choice
                 new ChooseCommand(),
@@ -134,7 +136,12 @@ public class Main2 {
                 new PingCommand(),
 
                 // command to shut off the bot
-                new ShutdownCommand());
+                new ShutdownCommand(),
+
+                //MY PICTURE
+                new PicCommands()
+
+        );
 
         // start getting a bot account set up
         JDABuilder.createDefault(token)
@@ -166,7 +173,8 @@ public class Main2 {
                         registerListeners.messages,
                         registerListeners.privateMessage,
                         registerListeners.testEmbeds,
-                        registerListeners.pong
+                        registerListeners.pong,
+                        registerListeners.muteTests
                 )
 
                 // start it up!

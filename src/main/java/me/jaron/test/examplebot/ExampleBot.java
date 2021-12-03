@@ -24,9 +24,6 @@ import com.jagrosh.jdautilities.commons.waiter.EventWaiter;
 import com.jagrosh.jdautilities.examples.command.*;
 import java.awt.Color;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.List;
 import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -80,7 +77,7 @@ public class ExampleBot
                         new Permission[]{Permission.ADMINISTRATOR}),
 
                 // command to show a random cat
-                new CatCommands(),
+                new CatCommand(),
 
                 // command to make a random choice
                 new ChooseCommand(),

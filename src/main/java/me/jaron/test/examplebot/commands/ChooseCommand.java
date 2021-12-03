@@ -27,6 +27,7 @@ public class ChooseCommand extends Command
 
     public ChooseCommand()
     {
+        this.cooldown = 10;
         this.name = "choose";
         this.help = "make a decision";
         this.arguments = "<item> <item> ...";

@@ -30,6 +30,7 @@ public class HelloCommand extends Command
     private final EventWaiter waiter;
     public HelloCommand(EventWaiter waiter)
     {
+        this.cooldown = 2;
         this.waiter = waiter;
         this.name = "hello";
         this.aliases = new String[]{"hi"};

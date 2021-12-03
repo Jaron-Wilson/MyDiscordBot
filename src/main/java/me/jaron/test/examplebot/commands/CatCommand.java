@@ -26,15 +26,18 @@ import java.awt.Color;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.ChannelType;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
 /**
  *
  * @author John Grosh (john.a.grosh@gmail.com)
  */
-public class CatCommands extends Command
+public class CatCommand extends Command
 {
-    public CatCommands()
+    public CatCommand()
     {
+        this.cooldown = 2;
+
         this.name = "cat";
         this.help = "shows a random cat";
         this.botPermissions = new Permission[]{Permission.MESSAGE_EMBED_LINKS};
@@ -46,13 +49,13 @@ public class CatCommands extends Command
     {
         // use Unirest to poll an API
         Unirest.get("https://aws.random.cat/meow").asJsonAsync(new Callback<JsonNode>(){
-            
+
             // The API call was successful
             @Override
             public void completed(HttpResponse<JsonNode> hr)
             {
                 event.reply(new EmbedBuilder()
-                        .setColor(event.isFromType(ChannelType.TEXT) ? event.getSelfMember().getColor() : Color.GRAY)
+                        .setColor(event.isFromType(ChannelType.TEXT) ? event.getSelfMember().getColor() : Color.GREEN)
                         .setImage(hr.getBody().getObject().getString("file"))
                         .build());
             }

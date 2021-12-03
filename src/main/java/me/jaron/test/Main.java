@@ -1,9 +1,5 @@
 package me.jaron.test;
 
-import com.jagrosh.jdautilities.command.CommandClientBuilder;
-import com.jagrosh.jdautilities.examples.command.AboutCommand;
-import com.jagrosh.jdautilities.examples.command.PingCommand;
-import com.jagrosh.jdautilities.examples.command.ShutdownCommand;
 import me.jaron.test.events.calculator.Calculate;
 import me.jaron.test.commands.Clearcommand;
 import me.jaron.test.counters.DeleteCounter;
@@ -17,10 +13,6 @@ import me.jaron.test.events.image.ImageManipulator;
 import me.jaron.test.events.filter.Filter;
 import me.jaron.test.events.filter.FilterMessage;
 import me.jaron.test.events.filter.FilterOnOff;
-import me.jaron.test.events.slashcommands.SlashPong;
-import me.jaron.test.examplebot.commands.CatCommands;
-import me.jaron.test.examplebot.commands.ChooseCommand;
-import me.jaron.test.examplebot.commands.HelloCommand;
 import me.jaron.test.games.GuessingGame;
 import me.jaron.test.games.pong.Pong;
 import me.jaron.test.listeners.Announcement;
@@ -28,22 +20,15 @@ import me.jaron.test.messages.Messages;
 import me.jaron.test.messages.PrivateMessage;
 import me.jaron.test.messages.dmed.DMMessaged;
 import me.jaron.test.messages.reactions.GuildMessageReactionAdded;
-import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
-import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.Compression;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import javax.security.auth.login.LoginException;
-import java.awt.*;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.EnumSet;
-import java.util.List;
 
 public class Main {
 
